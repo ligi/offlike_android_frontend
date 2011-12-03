@@ -8,9 +8,7 @@
 <TextView
 	android:id="@+id/title"
     style="?android:attr/textAppearanceLarge"
-    android:paddingTop="23dip"
-    android:paddingBottom="23dip"
-    android:paddingLeft="7dip"
+
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 
@@ -18,9 +16,7 @@
 	android:id="@+id/url"
     style="?android:attr/textAppearanceSmall"
     android:text="test"
-    android:paddingTop="23dip"
-    android:paddingBottom="23dip"
-    android:paddingLeft="7dip"
+
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 
