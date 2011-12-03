@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.Menu;
 import android.support.v4.view.MenuItem;
@@ -69,6 +70,11 @@ public class OfflikeFragmentActivity extends FragmentActivity {
 			Intent i=new Intent(this,FakeTrigger.class);
 			this.startActivity(i);
 			break;
+			
+		case R.id.menu_settings:
+			Intent settings_intent=new Intent(this,OfflikePreferencesActivity.class);
+			this.startActivity(settings_intent);
+			break;
 		 }	
 	  return super.onOptionsItemSelected(item);
 	 }
@@ -94,5 +100,9 @@ public class OfflikeFragmentActivity extends FragmentActivity {
 		            // Handle cancel
 		        }
 	    }
+	}
+	
+	public boolean isGPSwaitEnabled() {
+		return PreferenceManager.getDefaultSharedPreferences(this.getBaseContext()).getBoolean(OfflikePreferencesActivity.KEY_GPS_WAIT,false);
 	}
 }

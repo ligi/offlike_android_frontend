@@ -46,6 +46,8 @@
         
         <activity    android:name=".FakeTrigger" />
         <activity    android:name=".PendingLikesActivity" />
+        <activity    android:name=".OfflikePreferencesActivity" />
+        
     </application>
 
 </manifest>

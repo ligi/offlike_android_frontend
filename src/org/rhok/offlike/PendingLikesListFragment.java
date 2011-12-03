@@ -12,13 +12,18 @@ import android.widget.TextView;
 public class PendingLikesListFragment extends ListFragment {
 	
 	private Cursor cursor;	
-
 	private OfflikeFragmentActivity activity;
 	private WebView webview;
 	
 	public PendingLikesListFragment() {
+		
 	}
 	
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+	}
+
 	public PendingLikesListFragment(Cursor c, OfflikeFragmentActivity activity,WebView webview) {
 		cursor=c;
 		this.activity=activity;
