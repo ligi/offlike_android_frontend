@@ -9,12 +9,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-public class FakeTrigger extends Activity {
+public class FakeTrigger extends OfflikeFragmentActivity {
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     	LinearLayout lin=new LinearLayout(this);
+        lin.setOrientation(LinearLayout.VERTICAL);
         
         for ( int i=0;i<5;i++) {
         	Button btn=new Button(this);
@@ -27,8 +28,10 @@ public class FakeTrigger extends Activity {
 					Intent intent= new Intent();
 					Activity a=FakeTrigger.this;
 					intent.setAction(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse("http://offlike.herokuapp.com/campaign/"+(Integer)v.getTag()));
+					intent.setData(Uri.parse("http://offlike.herokuapp.com/like/id"+(Integer)v.getTag() + "?campaign_name=testfoobar"+(Integer)v.getTag()));
 					a.startActivity(intent);
+					if ((Integer)v.getTag()==4)
+						del_pending();
 				}
         		
         	});
