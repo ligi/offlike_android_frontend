@@ -20,7 +20,7 @@ public class PendingLikesActivity extends OfflikeFragmentActivity {
         super.onCreate(savedInstanceState);
 
         // guide the user to the market if he has no barcode scanner
-        if (!OfflikeAppHelper.isIntentAvailable(this, "com.google.zxing.client.android.SCAN"))
+        if (!OfflikeAppHelper.isBarCodeAppInstalled(this))
         	new AlertDialog.Builder(this).setMessage("Barcode Scanner not installed - APP makes way more sense with it - do you want to install?")
         	.setPositiveButton(android.R.string.ok, new OnClickListener() {
 

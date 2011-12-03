@@ -28,7 +28,7 @@ public class FakeTrigger extends OfflikeFragmentActivity {
 					Intent intent= new Intent();
 					Activity a=FakeTrigger.this;
 					intent.setAction(Intent.ACTION_VIEW);
-					intent.setData(Uri.parse("http://offlike.herokuapp.com/like/id"+(Integer)v.getTag() + "?campaign_name=testfoobar"+(Integer)v.getTag()));
+					intent.setData(Uri.parse("http://offlike.herokuapp.com/like/id"+(Integer)v.getTag() + "?campaign_name=TestCampaign"+(Integer)v.getTag()));
 					a.startActivity(intent);
 				}
         		

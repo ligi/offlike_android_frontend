@@ -22,6 +22,7 @@ public class OfflikeFragmentActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		pending_likes_sql=new PendingLikesSQLHelper(this);
+		this.setTitle("OffLike");
 	}
 	
 	public void addPendingLike(String title,String url) {
@@ -37,15 +38,15 @@ public class OfflikeFragmentActivity extends FragmentActivity {
 	    SQLiteDatabase db = pending_likes_sql.getReadableDatabase();
 	    db.delete(PendingLikesSQLHelper.TABLE, "url=?", new String[] { url });
 	}
+	
+
 
 	 @Override
 	 public boolean onOptionsItemSelected(MenuItem item) {
 		 switch (item.getItemId()) {
 		 case android.R.id.home:
 			 // app icon in action bar clicked; go home
-			 Intent intent = new Intent(this, OfflikeActivity.class);
-			 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			 startActivity(intent);
+			 OfflikeAppHelper.goHome(this);
 			 return true;
 
 	     case R.id.menu_scan:
@@ -69,7 +70,10 @@ public class OfflikeFragmentActivity extends FragmentActivity {
 
 	 @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		this.getMenuInflater().inflate(R.menu.menu_omnipresent, menu);
+		 this.getMenuInflater().inflate(R.menu.menu_omnipresent, menu);
+		 if (OfflikeAppHelper.isBarCodeAppInstalled(this))
+			 this.getMenuInflater().inflate(R.menu.menu_scan, menu);
+			
 		return super.onCreateOptionsMenu(menu);
 	}
 	 

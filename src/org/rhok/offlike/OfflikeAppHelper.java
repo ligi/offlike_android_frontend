@@ -38,4 +38,14 @@ public class OfflikeAppHelper {
 	                     PackageManager.MATCH_DEFAULT_ONLY);
 	     return list.size() > 0;
 	 }
+	 
+	 public static boolean isBarCodeAppInstalled(Context ctx) {
+		 return OfflikeAppHelper.isIntentAvailable(ctx, "com.google.zxing.client.android.SCAN");
+	 }
+	 
+	public static void goHome(Context ctx) {
+		 Intent intent = new Intent(ctx, OfflikeActivity.class);
+		 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		 ctx.startActivity(intent);
+	}
 }

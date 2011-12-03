@@ -36,15 +36,18 @@ public class PendingLikesListFragment extends ListFragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-	    String[] columns = new String[] { PendingLikesSQLHelper.TITLE,PendingLikesSQLHelper.URL};
-	    int[] to = new int[] { R.id.title, R.id.url };
-	     
-        SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(activity, R.layout.pending_likes, getPendingLikes(), columns, to);
+		try {
+		    String[] columns = new String[] { PendingLikesSQLHelper.TITLE,PendingLikesSQLHelper.URL};
+		    int[] to = new int[] { R.id.title, R.id.url };
+		     
+	        SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(activity, R.layout.pending_likes, getPendingLikes(), columns, to);
+			
+			this.setListAdapter(mAdapter);
 		
-		this.setListAdapter(mAdapter);
-	
-		this.getListView().setCacheColorHint(0);
-        
+			this.getListView().setCacheColorHint(0);
+		} catch (Exception e) {
+			OfflikeAppHelper.goHome(this.getActivity());
+		}
 	}
 
 	@Override
