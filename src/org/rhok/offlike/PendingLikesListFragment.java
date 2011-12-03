@@ -23,6 +23,7 @@ public class PendingLikesListFragment extends ListFragment {
 		cursor=c;
 		this.activity=activity;
 		this.webview=webview;
+
 	}
 	
 	@Override

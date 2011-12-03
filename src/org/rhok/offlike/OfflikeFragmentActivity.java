@@ -34,9 +34,9 @@ public class OfflikeFragmentActivity extends FragmentActivity {
 	    db.insert(PendingLikesSQLHelper.TABLE, null, values);
 	 }
 	
-	public void del_pending() {
+	public void delPendingByURL(String url) {
 	    SQLiteDatabase db = pending_likes_sql.getReadableDatabase();
-	    db.delete(PendingLikesSQLHelper.TABLE, null, null);
+	    db.delete(PendingLikesSQLHelper.TABLE, "url=?", new String[] { url });
 	}
 	
 	 public Cursor getPendingLikes() {

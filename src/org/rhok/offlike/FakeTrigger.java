@@ -19,7 +19,7 @@ public class FakeTrigger extends OfflikeFragmentActivity {
         
         for ( int i=0;i<5;i++) {
         	Button btn=new Button(this);
-        	btn.setText("campaigna " + i);
+        	btn.setText("campaign " + i);
         	btn.setTag(i);
         	btn.setOnClickListener(new OnClickListener() {
 
@@ -30,8 +30,6 @@ public class FakeTrigger extends OfflikeFragmentActivity {
 					intent.setAction(Intent.ACTION_VIEW);
 					intent.setData(Uri.parse("http://offlike.herokuapp.com/like/id"+(Integer)v.getTag() + "?campaign_name=testfoobar"+(Integer)v.getTag()));
 					a.startActivity(intent);
-					if ((Integer)v.getTag()==4)
-						del_pending();
 				}
         		
         	});
