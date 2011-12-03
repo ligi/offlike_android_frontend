@@ -1,5 +1,6 @@
 package org.rhok.offlike;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -11,7 +12,6 @@ import android.widget.TextView;
 
 public class PendingLikesListFragment extends ListFragment {
 	
-	private Cursor cursor;	
 	private OfflikeFragmentActivity activity;
 	private WebView webview;
 	
@@ -21,11 +21,12 @@ public class PendingLikesListFragment extends ListFragment {
 	
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
+		
 		super.onSaveInstanceState(outState);
 	}
 
-	public PendingLikesListFragment(Cursor c, OfflikeFragmentActivity activity,WebView webview) {
-		cursor=c;
+	public PendingLikesListFragment(OfflikeFragmentActivity activity,WebView webview) {
+		this.setRetainInstance(true);
 		this.activity=activity;
 		this.webview=webview;
 
@@ -38,7 +39,7 @@ public class PendingLikesListFragment extends ListFragment {
 	    String[] columns = new String[] { PendingLikesSQLHelper.TITLE,PendingLikesSQLHelper.URL};
 	    int[] to = new int[] { R.id.title, R.id.url };
 	     
-        SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(activity, R.layout.pending_likes, cursor, columns, to);
+        SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(activity, R.layout.pending_likes, getPendingLikes(), columns, to);
 		
 		this.setListAdapter(mAdapter);
 	
@@ -54,4 +55,13 @@ public class PendingLikesListFragment extends ListFragment {
 		Log.i("offclick",""+((TextView)(v.findViewById(R.id.url))).getText());
 	}
 
+	 public Cursor getPendingLikes() {
+		 PendingLikesSQLHelper pending_likes_sql=new PendingLikesSQLHelper(this.getActivity());
+		 SQLiteDatabase db = pending_likes_sql.getReadableDatabase();
+		 Cursor cursor = db.query(PendingLikesSQLHelper.TABLE, null, null, null, null, null, null);
+			
+		 this.getActivity().startManagingCursor(cursor);
+		
+		return cursor;
+	 }
 }

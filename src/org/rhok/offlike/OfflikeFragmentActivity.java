@@ -2,7 +2,6 @@ package org.rhok.offlike;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.util.Log;
 
 
 public class OfflikeFragmentActivity extends FragmentActivity {
-
 
 	public final static int REQUEST_ID_SCAN=0;
 
@@ -39,16 +37,6 @@ public class OfflikeFragmentActivity extends FragmentActivity {
 	    SQLiteDatabase db = pending_likes_sql.getReadableDatabase();
 	    db.delete(PendingLikesSQLHelper.TABLE, "url=?", new String[] { url });
 	}
-	
-	 public Cursor getPendingLikes() {
-	
-		 SQLiteDatabase db = pending_likes_sql.getReadableDatabase();
-		 Cursor cursor = db.query(PendingLikesSQLHelper.TABLE, null, null, null, null, null, null);
-			
-		 startManagingCursor(cursor);
-		
-		return cursor;
-	 }
 
 	 @Override
 	 public boolean onOptionsItemSelected(MenuItem item) {
