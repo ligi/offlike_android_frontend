@@ -1,5 +1,6 @@
 package org.rhok.offlike;
 
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,10 +12,16 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.view.Menu;
 import android.support.v4.view.MenuItem;
 
+/**
+ * activity to start and set up the APP
+ * determines Location and install state of Barcode scanner
+ * 
+ * @author ligi
+ *
+ */
 public class OfflikeActivity extends OfflikeFragmentActivity implements LocationListener {
 	
 	public static Location last_location=null;
@@ -74,7 +81,7 @@ public class OfflikeActivity extends OfflikeFragmentActivity implements Location
     	
 		@Override
 		protected Void doInBackground(Void... params) {
-			turnGPSOn();
+			OfflikeAppHelper.turnGPSOn(OfflikeActivity.this);
 			while ((running)&&(last_location==null))
 				try {
 					Thread.sleep(100);
@@ -139,16 +146,6 @@ public class OfflikeActivity extends OfflikeFragmentActivity implements Location
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 	}
 
-	private void turnGPSOn(){
-	    String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
 
-	    if(!provider.contains("gps")){ //if gps is disabled
-	        final Intent poke = new Intent();
-	        poke.setClassName("com.android.settings", "com.android.settings.widget.SettingsAppWidgetProvider"); 
-	        poke.addCategory(Intent.CATEGORY_ALTERNATIVE);
-	        poke.setData(Uri.parse("3")); 
-	        sendBroadcast(poke);
-	    }
-	}
-
+	
 }

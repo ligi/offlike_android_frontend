@@ -1,5 +1,10 @@
 package org.rhok.offlike;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +19,18 @@ public class PendingLikesActivity extends OfflikeFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (OfflikeAppHelper.isIntentAvailable(this, "com.google.zxing.client.android.SCAN"))
+        	new AlertDialog.Builder(this).setMessage("Barcode Scanner not installed - APP makes way more sense with it - do you want to install?")
+        	.setPositiveButton("OK", new OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					Uri uri = Uri.parse("market://search?q=pname:com.google.zxing.client.android");
+                    startActivity(new Intent(Intent.ACTION_VIEW, uri));
+				}
+        		
+        	}).setTitle("Hint").show();
+        
         setContentView(R.layout.list_and_webview);
         wv=(WebView)this.findViewById(R.id.webview);
         wv.loadUrl("http://offlike.herokuapp.com/like/asdfads?campaign_name=asdfa");
