@@ -18,11 +18,13 @@ public class OfflikeActivity extends OfflikeFragmentActivity {
         //setContentView(R.layout.main);
         
         TextView tv=new TextView(this);
-        if (getIntent().getData()!=null)
+        if (getIntent().getData()!=null) {
         	tv.setText(getIntent().getData().toString());
-        else
+        	this.addPendingLike("", getIntent().getData().toString());
+        }
+        else {
         	tv.setText("no URL");
-        
+        }
         this.setContentView(tv);
         
     }
