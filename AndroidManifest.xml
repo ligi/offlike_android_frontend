@@ -26,14 +26,21 @@
        		
        		<data android:scheme="http"   android:host="offlike.org"  />
        		<data android:scheme="https"   android:host="offlike.org"  />
-		</intent-filter>
+       		
+       		<data android:scheme="http"   android:host="offlike.herokuapp.com"  />
+       		<data android:scheme="https"   android:host="offlike.herokuapp.com"  />
+       		
+       	</intent-filter>
 		
         </activity>
         
-            
         <activity
             android:label="@string/app_name"
             android:name=".DetermineLocationActivity" >
+        </activity>
+        
+        <activity
+            android:name=".FakeTrigger" >
             
         </activity>
     </application>
