@@ -1,6 +1,7 @@
 package org.rhok.offlike;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.Menu;
 import android.support.v4.view.MenuItem;
@@ -17,7 +18,9 @@ public class OfflikeActivity extends OfflikeFragmentActivity {
         TextView tv=new TextView(this);
         if (getIntent().getData()!=null) {
         	tv.setText(getIntent().getData().toString());
-        	this.addPendingLike("", getIntent().getData().toString());
+        	
+        	this.addPendingLike(Uri.parse(getIntent().getData().toString()).getQueryParameter("campaign_name")
+        			 , getIntent().getData().toString());
         }
         else {
         	tv.setText("no URL");
@@ -47,7 +50,5 @@ public class OfflikeActivity extends OfflikeFragmentActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-
 
 }
