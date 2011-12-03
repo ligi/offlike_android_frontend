@@ -36,10 +36,7 @@ public class OfflikeActivity extends OfflikeFragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.menu_fake:
-			Intent i=new Intent(this,FakeTrigger.class);
-			this.startActivity(i);
-			break;
+
 			
 		case R.id.menu_pending:
 			Intent i_pend=new Intent(this,PendingLikesActivity.class);

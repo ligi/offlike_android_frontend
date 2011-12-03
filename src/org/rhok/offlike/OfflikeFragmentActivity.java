@@ -64,6 +64,11 @@ public class OfflikeFragmentActivity extends FragmentActivity {
 	         scan_intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
 	         startActivityForResult(scan_intent, REQUEST_ID_SCAN);
 	         break;
+	         
+		case R.id.menu_fake:
+			Intent i=new Intent(this,FakeTrigger.class);
+			this.startActivity(i);
+			break;
 		 }	
 	  return super.onOptionsItemSelected(item);
 	 }

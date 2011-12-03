@@ -7,7 +7,7 @@ import android.util.Log;
 
 /** Helper to the database, manages versions and creation */
 public class PendingLikesSQLHelper extends SQLiteOpenHelper {
-	private static final String DATABASE_NAME = "events.db";
+	private static final String DATABASE_NAME = "pending.db";
 	private static final int DATABASE_VERSION = 1;
 
 	// Table name
@@ -27,7 +27,7 @@ public class PendingLikesSQLHelper extends SQLiteOpenHelper {
 		String sql = "create table " + TABLE + "( " + BaseColumns._ID
 				+ " integer primary key autoincrement, " + TIME + " integer, "
 				+ TITLE + " text not null,"
-				+ URL + " text not null"
+				+ URL + " text not null unique"
 				+");";
 		Log.d("EventsData", "onCreate: " + sql);
 		db.execSQL(sql);
