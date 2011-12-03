@@ -18,7 +18,7 @@ public class FakeTrigger extends Activity {
         
         for ( int i=0;i<5;i++) {
         	Button btn=new Button(this);
-        	btn.setText("campaign " + i);
+        	btn.setText("campaigna " + i);
         	btn.setTag(i);
         	btn.setOnClickListener(new OnClickListener() {
 

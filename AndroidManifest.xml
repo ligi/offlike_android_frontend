@@ -39,10 +39,8 @@
             android:name=".DetermineLocationActivity" >
         </activity>
         
-        <activity
-            android:name=".FakeTrigger" >
-            
-        </activity>
+        <activity    android:name=".FakeTrigger" />
+        <activity    android:name=".PendingLikesActivity" />
     </application>
 
 </manifest>

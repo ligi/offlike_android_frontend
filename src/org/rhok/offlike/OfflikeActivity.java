@@ -42,6 +42,11 @@ public class OfflikeActivity extends Activity {
 			this.startActivity(i);
 			break;
 			
+		case R.id.menu_pending:
+			Intent i_pend=new Intent(this,PendingLikesActivity.class);
+			this.startActivity(i_pend);
+			break;
+			
         case android.R.id.home:
             // app icon in action bar clicked; go home
             Intent intent = new Intent(this, OfflikeActivity.class);
