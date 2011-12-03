@@ -19,14 +19,21 @@ public class PendingLikesActivity extends OfflikeFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (OfflikeAppHelper.isIntentAvailable(this, "com.google.zxing.client.android.SCAN"))
+        // guide the user to the market if he has no barcode scanner
+        if (!OfflikeAppHelper.isIntentAvailable(this, "com.google.zxing.client.android.SCAN"))
         	new AlertDialog.Builder(this).setMessage("Barcode Scanner not installed - APP makes way more sense with it - do you want to install?")
-        	.setPositiveButton("OK", new OnClickListener() {
+        	.setPositiveButton(android.R.string.ok, new OnClickListener() {
 
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
 					Uri uri = Uri.parse("market://search?q=pname:com.google.zxing.client.android");
                     startActivity(new Intent(Intent.ACTION_VIEW, uri));
+				}
+        	})
+        	.setNegativeButton(android.R.string.cancel, new OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();
 				}
         		
         	}).setTitle("Hint").show();
@@ -36,12 +43,12 @@ public class PendingLikesActivity extends OfflikeFragmentActivity {
         wv.loadUrl("http://offlike.herokuapp.com/like/asdfads?campaign_name=asdfa");
         wv.setOnTouchListener(new OnTouchListener() {
 
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				PendingLikesActivity.this.delPendingByURL(((WebView)v).getUrl());
-				PendingLikesActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.list_fragment, new PendingLikesListFragment(PendingLikesActivity.this,wv)).commit();
-				return false;
-			}
+		@Override
+		public boolean onTouch(View v, MotionEvent event) {
+			PendingLikesActivity.this.delPendingByURL(((WebView)v).getUrl());
+			PendingLikesActivity.this.getSupportFragmentManager().beginTransaction().replace(R.id.list_fragment, new PendingLikesListFragment(PendingLikesActivity.this,wv)).commit();
+			return false;
+		}
         	
         });
 		
