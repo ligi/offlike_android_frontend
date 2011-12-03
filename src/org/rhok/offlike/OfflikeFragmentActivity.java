@@ -1,10 +1,13 @@
 package org.rhok.offlike;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.MenuItem;
+
 
 public class OfflikeFragmentActivity extends FragmentActivity {
 
@@ -38,6 +41,19 @@ public class OfflikeFragmentActivity extends FragmentActivity {
 		 startManagingCursor(cursor);
 		
 		return cursor;
+	 }
+
+	 @Override
+	 public boolean onOptionsItemSelected(MenuItem item) {
+		 switch (item.getItemId()) {
+		 case android.R.id.home:
+			 // app icon in action bar clicked; go home
+			 Intent intent = new Intent(this, OfflikeActivity.class);
+			 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			 startActivity(intent);
+			 return true;
+		 }	
+	  return super.onOptionsItemSelected(item);
 	 }
 
 }

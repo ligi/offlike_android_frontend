@@ -1,15 +1,14 @@
 package org.rhok.offlike;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.Menu;
+import android.support.v4.view.MenuItem;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
-public class OfflikeActivity extends Activity {
+public class OfflikeActivity extends OfflikeFragmentActivity {
 	
 	public final static int REQUEST_ID_SCAN=0;
 	
@@ -68,7 +67,7 @@ public class OfflikeActivity extends Activity {
 	    if (requestCode == REQUEST_ID_SCAN) {
 	        if (resultCode == RESULT_OK) {
 	            String contents = intent.getStringExtra("SCAN_RESULT");
-	            String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+	            //String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
 	            Log.i("","contents" + contents);
 	            Intent i=new Intent(this,OfflikeActivity.class);
 	            i.setData(Uri.parse(contents));
