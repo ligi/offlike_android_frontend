@@ -22,8 +22,9 @@ public class OfflikeActivity extends OfflikeFragmentActivity {
         else {
         	tv.setText("no URL");
         }
-        this.setContentView(tv);
-        
+       // this.setContentView(tv);
+        Intent next=new Intent(this,PendingLikesActivity.class);
+        this.startActivity(next);
     }
 
 	@Override
