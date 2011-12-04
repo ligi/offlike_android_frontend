@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, OfflikeActivity!</string>
-    <string name="app_name">offlike</string>
-
+    <string name="app_name">OffLike</string>
+<string name="app_info">Supporting things globally online is very easy and popular at the moment. There are Systems like Google+1;FaceBook Like and Flatter - to just name 3. 
+Offlike aims to extend this pattern to local "offline" things. By placing QR-Codes ( or later NFC ) on real places with real problems - and giving the user the option to support this thing we hope to increase involvement with problems that matter for you - localy - offline.
+</string>
+ 
 </resources>

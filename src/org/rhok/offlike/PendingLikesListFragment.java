@@ -49,7 +49,7 @@ public class PendingLikesListFragment extends ListFragment {
 		
 		try {
 		    String[] columns = new String[] { PendingLikesSQLHelper.TITLE,PendingLikesSQLHelper.URL};
-		    int[] to = new int[] { R.id.title, R.id.url };
+		    int[] to = new int[] { R.id.title, R.id.url };	
 		     
 	        SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(activity, R.layout.pending_likes, getPendingLikes(), columns, to);
 			

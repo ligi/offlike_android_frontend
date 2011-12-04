@@ -1,6 +1,9 @@
 package org.rhok.offlike;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -63,6 +66,18 @@ public class OfflikeFragmentActivity extends FragmentActivity {
 		case R.id.menu_settings:
 			Intent settings_intent=new Intent(this,OfflikePreferencesActivity.class);
 			this.startActivity(settings_intent);
+			break;
+			
+		case R.id.menu_details:
+			new AlertDialog.Builder(this).setMessage(R.string.app_info).setTitle("Help")
+			.setPositiveButton(android.R.string.ok, new OnClickListener() {
+
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					dialog.cancel();					
+				}
+			})
+			.show();
 			break;
 		 }	
 	  return super.onOptionsItemSelected(item);
