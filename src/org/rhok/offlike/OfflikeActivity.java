@@ -1,6 +1,9 @@
 package org.rhok.offlike;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -67,8 +70,15 @@ public class OfflikeActivity extends OfflikeFragmentActivity implements Location
 	        	if (last_location!=null)
 	        		myURL+="&lat="+last_location.getLatitude()+"&lon="+last_location.getLongitude()+"&accuracy="+(int)last_location.getAccuracy();
 	        	
-	        		this.addPendingLike(Uri.parse(myURL).getQueryParameter("campaign_name")
-	        			 , myURL);
+	        		try {
+						this.addPendingLike(URLDecoder.decode(Uri.parse(myURL).getQueryParameter("campaign_name"),"UTF-8")
+							 , myURL);
+					} catch (UnsupportedEncodingException e) {
+						this.addPendingLike(Uri.parse(myURL).getQueryParameter("campaign_name")
+								 , myURL);
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 	        }
     	}
     	
