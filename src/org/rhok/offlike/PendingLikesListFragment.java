@@ -30,12 +30,18 @@ public class PendingLikesListFragment extends ListFragment {
 		this.activity=activity;
 		this.webview=webview;
 
+		
 	}
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		Cursor pending_likes_c=this.getPendingLikes();
+		int url_id=pending_likes_c.getColumnIndex(PendingLikesSQLHelper.URL);
+		pending_likes_c.moveToLast();
+		this.webview.loadUrl(pending_likes_c.getString(url_id));
+		
 		try {
 		    String[] columns = new String[] { PendingLikesSQLHelper.TITLE,PendingLikesSQLHelper.URL};
 		    int[] to = new int[] { R.id.title, R.id.url };
@@ -64,7 +70,7 @@ public class PendingLikesListFragment extends ListFragment {
 		 Cursor cursor = db.query(PendingLikesSQLHelper.TABLE, null, null, null, null, null, null);
 			
 		 this.getActivity().startManagingCursor(cursor);
-		
+	
 		return cursor;
 	 }
 }

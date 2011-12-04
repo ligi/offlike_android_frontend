@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 public class PendingLikesActivity extends OfflikeFragmentActivity {
@@ -40,7 +41,17 @@ public class PendingLikesActivity extends OfflikeFragmentActivity {
         
         setContentView(R.layout.list_and_webview);
         wv=(WebView)this.findViewById(R.id.webview);
-        wv.loadUrl("http://offlike.herokuapp.com/like/asdfads?campaign_name=asdfa");
+        
+        WebSettings webSettings = wv.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+        
+        wv.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.getSettings().setSavePassword(false);
+        wv.getSettings().setBuiltInZoomControls(false);
+        wv.getSettings().setUseWideViewPort(true);
+        
         wv.setOnTouchListener(new OnTouchListener() {
 
 		@Override
