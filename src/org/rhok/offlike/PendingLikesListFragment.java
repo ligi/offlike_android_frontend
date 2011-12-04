@@ -38,9 +38,14 @@ public class PendingLikesListFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 
 		Cursor pending_likes_c=this.getPendingLikes();
-		int url_id=pending_likes_c.getColumnIndex(PendingLikesSQLHelper.URL);
-		pending_likes_c.moveToLast();
-		this.webview.loadUrl(pending_likes_c.getString(url_id));
+		
+		if (pending_likes_c.getCount()>0) {
+			int url_id=pending_likes_c.getColumnIndex(PendingLikesSQLHelper.URL);
+			pending_likes_c.moveToLast();
+			this.webview.loadUrl(pending_likes_c.getString(url_id));
+		}
+		else
+			this.webview.loadUrl("http://no-content.net/");
 		
 		try {
 		    String[] columns = new String[] { PendingLikesSQLHelper.TITLE,PendingLikesSQLHelper.URL};
